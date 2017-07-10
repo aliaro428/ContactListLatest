@@ -35,7 +35,7 @@ myApp.controller('ContactCtrl', ['$scope', '$http', function ($scope, $http) {
         //     refresh();
         //     console.log(data);
 
-        // });
+        // }); 
         $http.delete('/contactList/' + id, $scope.contact).success(function (data, status) {
             console.log(data);
             refresh()
@@ -48,15 +48,13 @@ myApp.controller('ContactCtrl', ['$scope', '$http', function ($scope, $http) {
         // $http.get('/contactList/' + id).success(function (response) {
         //     $scope.contact = response;
         // });
-        $http({
-            method: 'GET',
-            url: '/contactList' + id
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
+        $http.get('/contactList/'+id)
+        .then(function (result) {
+            $scope.user = result;
+            console.log(result);
+        }, function(result) {
+            //some error
+            console.log(result);
         });
     };
 

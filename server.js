@@ -29,7 +29,7 @@ myApp.delete('/contactList/:id', function (req, res) {
   });
 });
 
-myApp.get('contactList/:id', function (req, res) {
+myApp.get('/contactList/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
   db.contactList.findOne({ _id: mongojs.ObjectId(id) }, function (err, doc) {
