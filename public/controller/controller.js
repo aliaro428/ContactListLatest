@@ -30,12 +30,6 @@ myApp.controller('ContactCtrl', ['$scope', '$http', function ($scope, $http) {
     // removing data from server and controller
 
     $scope.remove = function (id) {
-        // console.log(id);
-        // $http.delete('/contactList/' + id + $scope.contact).then(function (data, status) {
-        //     refresh();
-        //     console.log(data);
-
-        // }); 
         $http.delete('/contactList/' + id, $scope.contact).success(function (data, status) {
             console.log(data);
             refresh()
@@ -43,26 +37,17 @@ myApp.controller('ContactCtrl', ['$scope', '$http', function ($scope, $http) {
     };
 
     // edit data
-    $scope.edit = function (id) {
-        console.log(id);
-        // $http.get('/contactList/' + id).success(function (response) {
-        //     $scope.contact = response;
-        // });
-        $http.get('/contactList/'+id)
-        .then(function (result) {
-            $scope.user = result;
-            console.log(result);
-        }, function(result) {
-            //some error
-            console.log(result);
-        });
-    };
-
+  $scope.edit = function(id) {
+  console.log(id);
+  $http.get('/contactList/' + id).success(function(response) {
+    $scope.contact = response;
+  });
+};  
 
     // update
     $scope.update = function () {
         console.log($scope.contact._id);
-        $http.put('/contactlist/' + $scope.contact._id).success(function (response) {
+        $http.put('/contactList/' + $scope.contact._id).success(function (response) {
             refresh();
         })
     };
